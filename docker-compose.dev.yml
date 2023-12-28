@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+#name of the service
+  react-project-dev:
+    container_name: react-project-container_name
+    image: react-project-dev-image
+    build:
+    #contatext- directory
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+    #hostport:containerport 
+      - "5173:5173"
+    volumes:
+    #. represt current directory change - to check real time chnage
+      - .:/react-project
+      - /react-project/node_modules #note required any change
+    # command: npm run dev
+    command: npm run dev --host
+
+#command to up compose
+#docker compose -f docker-compose.dev.yml up -d 
